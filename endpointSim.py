@@ -30,26 +30,20 @@ def endpointSim(numTrials):
     totalSuccess = 0
     currentIteration = 1
     DrawCircle(window2)    
-    DataLabel = tk.Label(root2, text = labelString)
-    windowUpdater(root2, window2, numTrials ,DataLabel)
-    DataLabel.pack(side="bottom")
+    windowUpdater(root2, window2, numTrials)
     root2.mainloop()
 
 #window update to allow for automatic changes in the simulation
-def windowUpdater(root2, window2, numTrials, DataLabel):
+def windowUpdater(root2, window2, numTrials):
     global totalSuccess
     global currentIteration
     sim = e.endpoint()
     color = sim.getSuccess()
     DrawLine(window2, sim.getX1(), sim.getY1(), sim.getX2(), sim.getY2(), color)
     totalSuccess = totalSuccess + sim.getSuccess()
-    DataLabel.config(text = labelMaker(currentIteration, numTrials, totalSuccess, DataLabel))
 
     if currentIteration <= numTrials:
         currentIteration = 1+currentIteration
-        root2.after(1, windowUpdater, root2, window2, numTrials, DataLabel)
+        root2.after(1, windowUpdater, root2, window2, numTrials)
     else:
         o.output("Endpoint",numTrials, totalSuccess)
-def labelMaker(currentIteration, numTrials, totalSuccess, DataLabel):
-    labelString = "Iteration " + str(currentIteration) + " of " + str(numTrials) + "\nRelative Frequency of Success: " + str((totalSuccess/numTrials))
-    return labelString
