@@ -10,7 +10,7 @@ def output(method, numTrials, totalSuccess):
     label = tk.Label(window, text="Results")
     label.pack(side="top")
 
-    resultLabel = tk.Label(window, text="Method: " + method + "\nNumber of Trials: " + str(numTrials) + "\nRelative Frequency of Sucess: " + str(totalSuccess/numTrials))
+    resultLabel = tk.Label(window, text="Method: " + method + "\nNumber of Trials: " + str(numTrials) + "\nTotal Number of Success: " + str(totalSuccess) + "\nRelative Frequency of Success: " + str(totalSuccess/numTrials))
     resultLabel.pack()
 
     root.mainloop()
